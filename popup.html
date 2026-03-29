@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Exporter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Cookie Exporter</h1>
+            <p>Advanced Local Cookie Extraction</p>
+        </div>
+        <div class="content">
+            <div class="filters-container" id="filtersContainer">
+                <div class="filter-header">
+                    <span>Extraction Scope</span>
+                </div>
+                <select id="extractionScope" class="format-dropdown" style="margin-bottom:8px; width:100%;">
+                    <option value="opened">Opened Tabs (Current)</option>
+                    <option value="closed">Background / Closed Tabs</option>
+                    <option value="all">All Stored Cookies</option>
+                </select>
+                <div class="filter-header" style="margin-top: 4px;">
+                    <span>Export Domains</span>
+                </div>
+                <div id="domainList" class="domain-list">
+                    <!-- Checkboxes dynamically added here -->
+                    <div class="loader" id="domainLoader" style="margin: 0 auto;"></div>
+                </div>
+                
+                <div class="safe-mode-toggle">
+                    <label title="Masks all cookie values to [REDACTED] when exporting">
+                        <input type="checkbox" id="safeShareToggle">
+                        <span>🛡️ Safe Share Mode (Redact Values)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="export-controls">
+                <select id="formatSelect" class="format-dropdown">
+                    <option value="netscape">Netscape (.txt)</option>
+                    <option value="json">JSON (.json)</option>
+                </select>
+                <button id="exportBtn" class="primary-btn">
+                    <span class="btn-text">Export</span>
+                    <div class="loader hidden" id="loader"></div>
+                </button>
+            </div>
+            
+            <div id="status" class="status-msg"></div>
+
+            <div class="table-container">
+                <table id="cookieTable" class="cookie-table">
+                    <thead>
+                        <tr>
+                            <th>Domain</th>
+                            <th>Name</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cookieTableBody">
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
